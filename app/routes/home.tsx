@@ -1,5 +1,6 @@
+import { useState } from "react";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import {Card, Button} from "antd";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +10,17 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Welcome />;
+
+  const [counter, setCounter] = useState(0);
+
+  const addOne = () => {
+    setCounter(counter + 1);
+  }
+
+  return <div className="flex items-center justify-center w-screen h-screen">
+    <Card>
+      <p>Counter: {counter}</p>
+    <Button onClick={addOne}>Add One</Button>
+    </Card>
+    </div>
 }
