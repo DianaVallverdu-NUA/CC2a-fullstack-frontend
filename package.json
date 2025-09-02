@@ -5,7 +5,7 @@
   "homepage": "https://dianavallverdu-nua.github.io/CC2a-fullstack-frontend",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build && npm run start",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
