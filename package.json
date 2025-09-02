@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "type": "module",
-  "homepage": "https://DianaVallverdu-NUA.github.io/CC2a-fullstack-frontend",
+  "homepage": "https://dianavallverdu-nua.github.io/CC2a-fullstack-frontend",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
