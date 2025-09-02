@@ -15,7 +15,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const fetchCounter = () => {
-    fetch("http://localhost:3000/counter").then((res) => {
+    fetch("https://cc2a-fullstack-backend.onrender.com/counter").then((res) => {
       res.text().then(text => {
         setCounter(Number(text));
       })
@@ -33,9 +33,10 @@ export default function Home() {
   const addOne = () => {
     setLoading(true);
     setCounter(counter + 1);
-    fetch("http://localhost:3000/counter", {method: "POST"}).then(() => {setLoading(false)});
+    fetch("https://cc2a-fullstack-backend.onrender.com/counter", {method: "POST"}).then(() => {
+      setLoading(false)});
   }
-
+//
   return <div className="flex items-center justify-center w-screen h-screen">
     <Card>
       <p>Counter: {counter}</p>
