@@ -18,8 +18,8 @@ export default function Home() {
     const url = `${backendURL}/counter`;
     fetch(url).then(
       (res) => {
-        res.text().then((text) => {
-          setCounter(Number(text));
+        res.json().then((result) => {
+          setCounter(result.counter);
         });
       },
       (error) => {
@@ -36,7 +36,13 @@ export default function Home() {
     const url = `${backendURL}/counter`;
     setLoading(true);
     setCounter(counter + 1);
-    fetch(url, { method: "POST" }).then(() => {
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({ counter: counter + 1 }),
+    }).then(() => {
       setLoading(false);
     });
   };
