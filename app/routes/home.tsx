@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
-import {Card, Button} from "antd";
+import { Card, Button } from "antd";
+const backendURL = import.meta.env.BACKEND || "http://localhost:3000";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -10,37 +11,44 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-
   const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const fetchCounter = () => {
-    fetch("https://cc2a-fullstack-backend.onrender.com/counter").then((res) => {
-      res.text().then(text => {
-        setCounter(Number(text));
-      })
-    }, error => {
-      console.log(error);
-    })
-  }
+    const url = `${backendURL}/counter`;
+    fetch(url).then(
+      (res) => {
+        res.text().then((text) => {
+          setCounter(Number(text));
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 
   useEffect(() => {
     fetchCounter();
-    let id = setInterval(fetchCounter, 500);
-    return () => clearInterval(id);
-  }, [])
+  }, []);
 
   const addOne = () => {
+    const url = `${backendURL}/counter`;
     setLoading(true);
     setCounter(counter + 1);
-    fetch("https://cc2a-fullstack-backend.onrender.com/counter", {method: "POST"}).then(() => {
-      setLoading(false)});
-  }
-//
-  return <div className="flex items-center justify-center w-screen h-screen">
-    <Card>
-      <p>Counter: {counter}</p>
-    <Button onClick={addOne} disabled={loading}>Add One</Button>
-    </Card>
+    fetch(url, { method: "POST" }).then(() => {
+      setLoading(false);
+    });
+  };
+  //
+  return (
+    <div className='flex items-center justify-center w-screen h-screen'>
+      <Card>
+        <p>Counter: {counter}</p>
+        <Button onClick={addOne} disabled={loading}>
+          Add One
+        </Button>
+      </Card>
     </div>
+  );
 }
