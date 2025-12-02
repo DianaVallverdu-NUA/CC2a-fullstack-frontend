@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
 import { Card, Button } from "antd";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const backendURL = "http://localhost:3000";
 
 export function meta({}: Route.MetaArgs) {
   return [
